@@ -1,0 +1,18 @@
+ You are Python programming expert and Flet library (ths repository) expert. Create simple windows app that would have audio recorder and couple fields 
+1) field to input path folder for database
+2) field for patient name
+3) field for patient surname 
+4) field for date with automatic defaould for today
+4) field for patient_id - auto generated based on current date and patient recorder given day
+5) text area for "initial description"
+6) text area for "scintigraphy"
+7) text area for "FDG PET"
+ At the top right it should have also a search field to look fo patient based on name; surname or id 
+
+ App should after it validated that has patient id 
+ 1) check weather in input path folder folder with such id already is present if not create it 
+ 2) periodically every 4 seconds asynchronously save all data about all fields in a json format 
+ 3) when record audio button is pressed record it and save it into the folder with name based on patient id and date  - allow repeating recording the patient 
+ 4) if user would want to get back to patient would type in searchbar the patient id or name or surname or date and after clicking it from drop list you should load all of the text info from associated json and enable editing it 
+ 5) if user types id that was already present in database warn the user about that it is the case and offer loading the data from saved json 
+As a response create an app by editing """win_app/main_app.py""" you can get additional informatio about audioRecorder functionality in Flet by analizing """win_app/audio_recorder_notes.txt""" by design set supress_noise; cancel_echo and auto_gain to true . Additionally modify """win_app/install_and_start_guide.txt""" to provide detailed instruction for a user how to install all required things including python on Windows and installing requirements of this library . The repository of this code will be stored at """https://github.com/jakubMitura14/win_app.git""" guide the user to install git and clone this repo . Work step by step on each step making sure that all of the requirements are ment; all functions are fully implemented and there are no errors.
