@@ -48,7 +48,7 @@ This guide will help you set up and run the Patient Audio Recording System on Wi
    cd win_app
    ```
 
-### 2. Create a Virtual Environment (recommended)
+### 2. Create a Virtual Environment (recommended - you can skip it)
 
 1. Create a virtual environment:
    ```
