@@ -71,8 +71,9 @@ This guide will help you set up and run the Patient Audio Recording System on Wi
 
 2. Install the required packages with **specific versions**:
    ```
-   pip install flet==0.15.0 flet-audio-recorder==0.1.0
+   pip install -r requirements.txt
    ```
+
 
 3. Make sure you have microphone permissions enabled in Windows:
    - Go to Windows Settings
