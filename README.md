@@ -145,16 +145,6 @@ The application has a scrollable interface:
 
 ## Troubleshooting
 
-### Version Compatibility Issues
-If you encounter errors like:
-- "unexpected keyword argument 'scroll'"
-- "colors enum is deprecated"
-
-These are typically caused by version mismatches. Try the following:
-1. Make sure you've installed the exact versions specified above
-2. Update your code if using newer Flet versions (changing lowercase "colors" to uppercase "Colors")
-3. Reinstall packages if needed
-
 ### If Some Fields Are Not Visible
 - Make sure to scroll down to see all fields and controls
 - You can resize the window to make more content visible
