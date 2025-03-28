@@ -1,5 +1,3 @@
-# win_app
-for internal use
 # Patient Audio Recording System Installation Guide
 
 This guide will help you set up the Patient Audio Recording System on your Windows computer.
@@ -55,14 +53,10 @@ This guide will help you set up the Patient Audio Recording System on your Windo
 
 ### 3. Install Required Packages
 
-1. Install the required packages:
+1. Install the required packages using the requirements.txt file:
    ```
-   pip install flet flet-audio-recorder
+   pip install -r requirements.txt
    ```
-
-### 4. Audio Requirements for Windows
-
-On Windows, the audio recorder uses the system's built-in audio recording capabilities, so no additional software is needed.
 
 ## Running the Application
 
@@ -106,3 +100,10 @@ On Windows, the audio recorder uses the system's built-in audio recording capabi
 1. **Microphone Access**: Make sure your application has permission to access the microphone in Windows settings
 2. **Database Path**: Ensure the path for the database exists and is writable
 3. **Python Version**: If you encounter issues, verify you're using Python 3.10 or newer
+4. **Package Installation Issues**: If you encounter installation issues, try running:
+   ```
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+
+For additional support, please create an issue at https://github.com/jakubMitura14/win_app/issues

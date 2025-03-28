@@ -1,0 +1,2 @@
+flet>=0.21.0
+flet-audio-recorder>=0.1.0
