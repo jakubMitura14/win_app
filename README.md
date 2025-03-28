@@ -31,7 +31,7 @@ This guide will help you set up and run the Patient Audio Recording System on Wi
 ### 1. Clone the Repository
 
 1. Open Command Prompt (search for "cmd" in the Windows start menu)
-2. Create a folder where you want to install the application:
+2. Create a folder where you want to install the application - you can also do it manually :
    ```
    mkdir C:\Users\YourUsername\Documents\PatientApp
    cd C:\Users\YourUsername\Documents\PatientApp
