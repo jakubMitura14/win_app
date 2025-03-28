@@ -1,109 +1,163 @@
-# Patient Audio Recording System Installation Guide
+# Patient Audio Recording System - Installation and Setup Guide
 
-This guide will help you set up the Patient Audio Recording System on your Windows computer.
+This guide will help you set up and run the Patient Audio Recording System on Windows.
 
 ## Prerequisites
 
-### 1. Install Python
+### 1. Install Python 3.10 or later
 
-1. Download Python from the official website: https://www.python.org/downloads/windows/
-   - Choose Python 3.10 or newer
-   - During installation, make sure to check "Add Python to PATH"
-
-2. Verify installation by opening Command Prompt and typing:
+1. Download Python from [python.org](https://www.python.org/downloads/)
+2. Run the installer
+3. **IMPORTANT**: Check the box that says "Add Python to PATH" during installation
+4. Click "Install Now" and wait for the installation to complete
+5. Verify installation by opening Command Prompt (search for "cmd" in Windows search) and typing:
    ```
    python --version
    ```
-   You should see the Python version displayed.
+   You should see a version number like "Python 3.10.x" or higher
 
 ### 2. Install Git
 
-1. Download Git from: https://git-scm.com/download/win
-2. Install using the default options
-3. Verify installation by opening Command Prompt and typing:
+1. Download Git from [git-scm.com](https://git-scm.com/download/win)
+2. Run the installer with default options
+3. After installation, verify Git is installed by opening Command Prompt and typing:
    ```
    git --version
    ```
+   You should see a version number like "git version 2.x.x"
 
-## Setup Application
+## Application Setup
 
 ### 1. Clone the Repository
 
-1. Open Command Prompt
-2. Navigate to a folder where you want to store the application
-3. Run the following command:
+1. Open Command Prompt (search for "cmd" in the Windows start menu)
+2. Create a folder where you want to install the application:
+   ```
+   mkdir C:\Users\YourUsername\Documents\PatientApp
+   cd C:\Users\YourUsername\Documents\PatientApp
+   ```
+   (Replace "YourUsername" with your actual Windows username)
+   
+3. Clone the repository:
    ```
    git clone https://github.com/jakubMitura14/win_app.git
    ```
-4. Change directory to the cloned repository:
+   
+4. Change to the application directory:
    ```
    cd win_app
    ```
 
-### 2. Create and Activate Virtual Environment (Recommended)
+### 2. Create a Virtual Environment (recommended)
 
 1. Create a virtual environment:
    ```
    python -m venv venv
    ```
+   
 2. Activate the virtual environment:
    ```
    venv\Scripts\activate
    ```
+   
+   You should see `(venv)` at the beginning of your command prompt.
 
 ### 3. Install Required Packages
 
-1. Install the required packages using the requirements.txt file:
+1. Update pip to the latest version first:
    ```
-   pip install -r requirements.txt
+   python -m pip install --upgrade pip
    ```
+
+2. Install the required packages with **specific versions**:
+   ```
+   pip install flet==0.15.0 flet-audio-recorder==0.1.0
+   ```
+
+3. Make sure you have microphone permissions enabled in Windows:
+   - Go to Windows Settings
+   - Select Privacy & Security
+   - Click on Microphone in the App permissions section
+   - Ensure microphone access is turned on
 
 ## Running the Application
 
-1. Make sure you're in the win_app directory and your virtual environment is activated
+1. Make sure your virtual environment is activated (you should see `(venv)` at the beginning of your command prompt)
 2. Run the application:
    ```
    python main_app.py
    ```
+3. The application should open in a new window
 
 ## Using the Application
 
-1. **Set Database Folder Path**: First, specify where patient data will be stored by clicking "Browse" or typing the path directly.
+### Navigating the Interface
 
-2. **Enter Patient Information**:
-   - Fill in the patient's name and surname
-   - The date will default to today but can be changed
-   - Click "Generate ID" to create a unique patient ID
+The application has a scrollable interface:
+- Search functionality is always visible at the top
+- Use the mouse wheel or scrollbar to access all fields and controls
+- All patient notes and recording controls can be accessed by scrolling down
 
-3. **Add Patient Notes**:
-   - Initial Description
-   - Scintigraphy
-   - FDG PET
+### Initial Setup
+1. Set a database folder path:
+   - Click the "Browse" button and select a folder
+   - Or type a path directly in the field (e.g., C:\PatientData)
+   - The folder will be created if it doesn't exist
 
-4. **Record Audio**:
-   - Make sure a patient ID is generated first
-   - Click "Start Recording" to begin
-   - Click "Stop Recording" when finished
-   - Multiple recordings can be made for the same patient
+2. Enter patient information:
+   - Fill in name and surname fields (optional)
+   - The date field is automatically filled with today's date
+   - You can modify any of these fields as needed
 
-5. **Search for Patients**:
-   - Use the search bar at the top right to find existing patients
-   - Search by name, surname, ID, or date
-   - Click on a patient from the results to load their data
+3. Generate or Enter a Patient ID:
+   - Click "Generate ID" to automatically create an ID
+   - You can edit the suggested ID if needed
 
-6. **Auto-Save Feature**:
-   - The application automatically saves data every 4 seconds
-   - No need to manually save
+### Using the Search Feature
+1. Click on the search field to see all patients in the database
+2. Use the radio buttons to select how to search:
+   - ID: Search only by patient ID
+   - Name/Surname: Search by patient name or surname
+   - All Fields: Search across all patient information
+3. Click on any patient in the results to load their data
+
+### Working with Patient Notes
+- Four text areas are available for detailed patient notes:
+  - Initial Description
+  - Scintigraphy
+  - FDG PET
+  - Additional Notes
+- All text areas have expanded height for easier data entry
+
+### Recording Audio
+1. Scroll down to access the recording controls
+2. The "Recording Prefix" field defaults to "USG"
+3. You can change this prefix to categorize your recordings
+4. Click "Start Recording" to begin
+5. Click "Stop Recording" to finish
+6. Recordings are saved in the patient's folder
+
+### Saving Patient Data
+1. Data is automatically saved every 4 seconds
+2. You can also click the "Save Patient Data" button to save immediately
+3. All data is stored in a JSON file in the patient's folder
 
 ## Troubleshooting
 
-1. **Microphone Access**: Make sure your application has permission to access the microphone in Windows settings
-2. **Database Path**: Ensure the path for the database exists and is writable
-3. **Python Version**: If you encounter issues, verify you're using Python 3.10 or newer
-4. **Package Installation Issues**: If you encounter installation issues, try running:
-   ```
-   pip install --upgrade pip
-   pip install -r requirements.txt
-   ```
+### Version Compatibility Issues
+If you encounter errors like:
+- "unexpected keyword argument 'scroll'"
+- "colors enum is deprecated"
 
-For additional support, please create an issue at https://github.com/jakubMitura14/win_app/issues
+These are typically caused by version mismatches. Try the following:
+1. Make sure you've installed the exact versions specified above
+2. Update your code if using newer Flet versions (changing lowercase "colors" to uppercase "Colors")
+3. Reinstall packages if needed
+
+### If Some Fields Are Not Visible
+- Make sure to scroll down to see all fields and controls
+- You can resize the window to make more content visible
+- If the application appears cut off, try restarting it
+
+For help or to report issues, please visit the GitHub repository:
+https://github.com/jakubMitura14/win_app
