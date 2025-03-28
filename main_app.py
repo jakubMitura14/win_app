@@ -61,7 +61,7 @@ class PatientApp:
             on_focus=self.on_search_focus,  # Added to handle focus event
             hint_text="Click to see all patients or type to search"  # Added hint text
         )
-        
+    
         # Radio buttons for search type
         self.search_type_group = ft.RadioGroup(
             value=self.search_type,
