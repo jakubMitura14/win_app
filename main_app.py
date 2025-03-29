@@ -27,6 +27,8 @@ class PatientApp:
         self.status_clear_task = None  # Add a reference to the status clear task
         self.search_type = "id"  # Default search type is by ID
         self.active_dialog = None  # Track active dialog
+        self.show_fdg_pet = False  # Toggle state for FDG PET visibility
+        self.show_additional_notes = False  # Toggle state for Additional Notes visibility
         
     async def main(self, page: ft.Page):
         # Store reference to page
@@ -153,7 +155,8 @@ class PatientApp:
             max_lines=8,  # Slightly reduced to save space
             value=self.patient_data["fdg_pet"],
             on_change=self.on_fdg_pet_change,
-            expand=True
+            expand=True,
+            visible=self.show_fdg_pet  # Toggle visibility based on state
         )
         
         # Add additional notes text area - also larger
@@ -164,7 +167,8 @@ class PatientApp:
             max_lines=8,  # Slightly reduced to save space
             value=self.patient_data["additional_notes"],
             on_change=self.on_additional_notes_change,
-            expand=True
+            expand=True,
+            visible=self.show_additional_notes  # Toggle visibility based on state
         )
         
         # Recording controls
@@ -172,7 +176,9 @@ class PatientApp:
             text="Start Recording",
             icon=ft.Icons.MIC,  # Updated from lowercase
             on_click=self.start_recording,
-            bgcolor=ft.Colors.GREEN  # Updated from lowercase
+            bgcolor=ft.Colors.GREEN,  # Updated from lowercase
+            width=150,  # Make button larger
+            height=50  # Make button larger
         )
         
         self.stop_button = ft.ElevatedButton(
@@ -180,7 +186,9 @@ class PatientApp:
             icon=ft.Icons.STOP,  # Updated from lowercase
             on_click=self.stop_recording,
             bgcolor=ft.Colors.RED,  # Updated from lowercase
-            disabled=True
+            disabled=True,
+            width=150,  # Make button larger
+            height=50  # Make button larger
         )
         
         # Status bar
@@ -254,6 +262,20 @@ class PatientApp:
                         ft.Container(content=self.scintigraphy, margin=ft.margin.only(bottom=8)),
                         ft.Container(content=self.fdg_pet, margin=ft.margin.only(bottom=8)),
                         ft.Container(content=self.additional_notes, margin=ft.margin.only(bottom=8)),
+                        
+                        # Toggle switches for FDG PET and Additional Notes visibility
+                        ft.Row([
+                            ft.Switch(
+                                label="Show FDG PET",
+                                value=self.show_fdg_pet,
+                                on_change=self.toggle_fdg_pet_visibility
+                            ),
+                            ft.Switch(
+                                label="Show Additional Notes",
+                                value=self.show_additional_notes,
+                                on_change=self.toggle_additional_notes_visibility
+                            )
+                        ]),
                         
                         # Audio controls with recording prefix - make sure these are visible
                         ft.Container(
@@ -952,6 +974,20 @@ class PatientApp:
                 
         # Create and store the task
         self.status_clear_task = asyncio.create_task(clear_status_after_delay())
+    
+    def toggle_fdg_pet_visibility(self, e):
+        """Toggle visibility of FDG PET field"""
+        self.show_fdg_pet = e.control.value
+        self.fdg_pet.visible = self.show_fdg_pet
+        if self.page:
+            self.page.update()
+    
+    def toggle_additional_notes_visibility(self, e):
+        """Toggle visibility of Additional Notes field"""
+        self.show_additional_notes = e.control.value
+        self.additional_notes.visible = self.show_additional_notes
+        if self.page:
+            self.page.update()
 
 
 async def main(page: ft.Page):
