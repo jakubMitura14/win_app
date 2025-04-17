@@ -1,0 +1,167 @@
+Detailed Adaptation Steps
+
+Extend the GUI for New User Inputs
+
+Add a row with modality checkboxes (MRI, CT, PET PSMA, FDG PET, or “Other”).
+Add a row for project selection (include the known projects or a text field for custom).
+Add a row with a dropdown or text field for “study number” (initially “1,” can be changed later).
+Add a text field for suggested ID (auto-generated or manual entry).
+Add text fields for the patient’s first and last name.
+Add new buttons/folders for:
+• A folder picker for the non-anonymized data output.
+• A folder picker for the metadata table.
+
+Create/Modify Functions for Handling GUI State
+
+build_metadata_form(): Creates all the new input fields (modality, project choice, etc.).
+Returns a layout object (no direct return data to the caller).
+collect_metadata(): Gathers the user-selected data (ID, name, project, etc.) from the form fields.
+Returns a dictionary with all metadata.
+
+Add a Function to Save Non-anonymized Copies
+
+copy_non_anonymized_dicom(input_path, original_output_path):
+Copies the file from input_path to original_output_path.
+Returns True/False depending on success.
+
+Modify the Existing Anonymization Logic
+
+In anonymize_dicom_file(input_path, output_path, chosen_id) (add chosen_id argument):
+Replace PatientID with the chosen ID.
+Keep current clearing of other tags.
+Return True/False for success.
+
+Refactor process_folder() to Handle Both Copies and Anonymization
+
+Split into smaller tasks:
+find_dicom_files(folder): returns a list of paths.
+process_single_file(file_path, metadata, original_output_folder, anonymized_output_folder):
+Calls copy_non_anonymized_dicom() with the correct mirrored path.
+Calls anonymize_dicom_file() with the correct mirrored path and chosen_id.
+Returns status info for logging.
+process_folder() then runs find_dicom_files(), iterates over each file, and calls process_single_file().
+
+Update Metadata Storage
+
+save_metadata_to_table(metadata_dict, dicom_dataset):
+Extract the DICOM date from the dataset (StudyDate or something similar).
+Write an entry to the user-specified metadata table (e.g., a CSV or Excel file).
+No return value, just a filesystem operation.
+
+Ensure Folder-Structure Replication
+
+Reuse the logic that builds the relative path for both the anonymized folder and the non-anonymized folder.
+Make sure the subfolders are created in both destinations.
+
+Validate & Finalize
+
+Update the main event flow to:
+Collect metadata from the GUI.
+Process the input folder, replicating subfolders and calling both copy and anonymization.
+Store the patient’s metadata in the table.
+Confirm everything works on a sample dataset with one patient and one study.
+
+### Patient ID Creation
+
+Only projects (currently) are
+FDM_DPI-2024-7-KRN^Lu177_PSMA (ID: Lu177_PSMA)
+FDM_DPI-2024-7-KRN^Prostata_bimodal (ID: Prostata_bimodal)
+FDM_DPI-2024-7-KRN^SD (ID: SD)
+
+
+Use the format: Prefix^project-ID||internal suffix
+
+• The prefix is "FDM_DPI-2024-7-KRN" (fixed).
+• project-ID is one of the known projects (Lu177_PSMA, Prostata_bimodal, SD) or a custom one.
+• internal suffix should follow the pattern: Modality.Number||PatX where:
+  - Modality is the selected imaging type (MRI, CT, PET, etc.)
+  - Number is the study index (0 for first study, 1 for second, etc.)
+  - PatX is a patient identifier where X is typically the study number
+
+Examples:
+FDM_DPI-2024-7-KRN^Lu177_PSMA||PET.0||Pat1
+FDM_DPI-2024-7-KRN^Prostata_bimodal||MRI||Pat1
+FDM_DPI-2024-7-KRN^SD||CT.1||Pat2
+
+### Implementation Details for Patient ID Generation
+
+1. **Project Selection UI:**
+   • Use a `ft.Dropdown` with these options:
+     - "Lu177_PSMA" (display as "Lu177_PSMA - FDM_DPI-2024-7-KRN^Lu177_PSMA")
+     - "Prostata_bimodal" (display as "Prostata_bimodal - FDM_DPI-2024-7-KRN^Prostata_bimodal")
+     - "SD" (display as "SD - FDM_DPI-2024-7-KRN^SD")
+     - "Other" (enables a custom project text field)
+   • Store only the project-ID part (e.g., "Lu177_PSMA") when selected
+
+2. **Modality Selection UI:**
+   • Use radio buttons or exclusive checkboxes for:
+     - MRI
+     - CT
+     - PET PSMA (stored as "PET" in ID)
+     - FDG PET (stored as "PET" in ID)
+     - Other (enables a custom modality text field)
+   • When "Other" is selected, allow free text entry
+
+3. **Study Number UI:**
+   • Use a numeric spinner or text field starting at "1"
+   • When calculating the ID, subtract 1 for the index (e.g., Study 1 → 0 in the ID)
+
+4. **ID Construction Algorithm:**
+   ```python
+   def update_generated_id():
+       prefix = "FDM_DPI-2024-7-KRN"
+       project_id = selected_project  # From dropdown
+       
+       # Get modality from radio buttons/checkboxes
+       if modality_other_selected:
+           modality = custom_modality_text
+       else:
+           modality = selected_modality  # MRI, CT, PET, etc.
+       
+       # Get study number and convert to index (0-based)
+       study_number = int(study_number_field.value)
+       study_index = study_number - 1
+       
+       # Create patient part
+       patient_part = f"Pat{study_number}"
+       
+       # Construct the ID
+       internal_suffix = f"{modality}.{study_index}||{patient_part}"
+       generated_id = f"{prefix}^{project_id}||{internal_suffix}"
+       
+       # Update the ID field
+       id_field.value = generated_id
+   ```
+
+5. **Auto-update Triggers:**
+   • The ID should auto-update when any of these change:
+     - Project selection
+     - Modality selection
+     - Study number
+   • Use on_change events for each control to call update_generated_id()
+   • Allow manual editing of the final ID for flexibility
+
+6. **Storage Structure:**
+   • For original data: `output_original_folder/[generated_id]/[subfolder_structure]`
+   • For anonymized data: `output_anonymized_folder/[generated_id]/[subfolder_structure]`
+   • For metadata CSV: `metadata_folder/patient_metadata.csv` with columns:
+     - PatientID (the generated ID)
+     - FirstName
+     - LastName
+     - StudyDate (from DICOM)
+     - ProjectID
+     - Modality
+
+7. **Folder Organization:**
+   • Both original and anonymized data should maintain the exact same subfolder structure
+   • Top-level folder name should be the complete generated ID
+   • Ensure valid characters for folder names by replacing any problematic characters
+
+8. **CSV Format for Metadata:**
+   • Header: PatientID,FirstName,LastName,StudyDate,ProjectID,Modality
+   • Example: FDM_DPI-2024-7-KRN^Lu177_PSMA||PET.0||Pat1,John,Doe,20240101,Lu177_PSMA,PET
+
+### Next Steps
+• Incorporate these IDs when building the anonymized folder name.
+• Ensure copy_non_anonymized_dicom() retains original tags but is placed under the same ID-based folder structure.
+• Update the metadata table with both the DICOM date and the constructed Patient ID.
