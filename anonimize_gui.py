@@ -93,6 +93,40 @@ def find_next_patient_number(metadata_folder, project_id):
     else:
         return "Pat1"
 
+def find_next_study_number(metadata_folder, project_id, patient_number_str):
+    """
+    Returns the next study number for a given patient in a project.
+    Study number is incremented for each entry with the same patient_number_str,
+    regardless of modality or other fields.
+    """
+    metadata_file_path = get_project_metadata_path(metadata_folder, project_id)
+    if not metadata_file_path or not patient_number_str:
+        return 1
+
+    max_study = 0
+    file_exists = os.path.isfile(metadata_file_path)
+    if file_exists:
+        with open(metadata_file_path, 'r', newline='', encoding='utf-8') as csvfile:
+            first_char = csvfile.read(1)
+            if not first_char:
+                return 1
+            csvfile.seek(0)
+            reader = csv.DictReader(csvfile)
+            # Accept both with and without StudyNumber in header
+            for row in reader:
+                if row.get("PatientNumberStr", "").strip() == patient_number_str:
+                    try:
+                        # If StudyNumber column exists, use it, else count rows
+                        if "StudyNumber" in reader.fieldnames:
+                            snum = int(row.get("StudyNumber", "0"))
+                            if snum > max_study:
+                                max_study = snum
+                        else:
+                            max_study += 1
+                    except Exception:
+                        continue
+    return max_study + 1
+
 def search_patients_by_surname(metadata_folder, project_id, surname_query):
     """
     Searches the project-specific CSV for patients matching the surname query.
@@ -317,13 +351,18 @@ def save_metadata_to_table(metadata_dict, metadata_folder, status_callback=None)
     try:
         os.makedirs(os.path.dirname(metadata_file_path), exist_ok=True)
 
+        # --- Add StudyNumber to header if not present ---
+        header = METADATA_HEADER.copy()
+        if "StudyNumber" not in header:
+            header.insert(header.index("PatientNumberStr") + 1, "StudyNumber")
+
         with open(metadata_file_path, 'a', newline='', encoding='utf-8') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=METADATA_HEADER)
+            writer = csv.DictWriter(csvfile, fieldnames=header)
 
             if is_empty:
                 writer.writeheader()
 
-            row_data = {field: metadata_dict.get(field.lower().replace("patientnumberstr", "patient_number_str"), "") for field in METADATA_HEADER}
+            row_data = {field: metadata_dict.get(field.lower().replace("patientnumberstr", "patient_number_str"), "") for field in header}
             row_data["PatientID"] = metadata_dict.get("generated_id", "")
             row_data["FirstName"] = metadata_dict.get("first_name", "")
             row_data["LastName"] = metadata_dict.get("last_name", "")
@@ -331,6 +370,7 @@ def save_metadata_to_table(metadata_dict, metadata_folder, status_callback=None)
             row_data["ProjectID"] = metadata_dict.get("project_id", "")
             row_data["Modality"] = metadata_dict.get("modality", "")
             row_data["PatientNumberStr"] = metadata_dict.get("patient_number_str", "")
+            row_data["StudyNumber"] = metadata_dict.get("study_number", "")
 
             writer.writerow(row_data)
             if status_callback:
@@ -472,11 +512,16 @@ class DicomAnonymizerApp:
         self.last_name_field = ft.TextField(label="Patient Last Name", on_change=self.validate_inputs, expand=True)
         self.patient_number_field = ft.TextField(label="Patient Number", tooltip="Format: Pat followed by digits (e.g., Pat123)", on_change=self._handle_input_change, expand=1)
 
-        self.modality_radio_group = ft.RadioGroup(content=ft.Column([
+        self.modality_radio_group = ft.RadioGroup(content=ft.Row([
                 ft.Radio(value="MRI", label="MRI"),
                 ft.Radio(value="CT", label="CT"),
                 ft.Radio(value="PETPSMA", label="PET PSMA"),
                 ft.Radio(value="PETFDG", label="FDG PET"),
+                ft.Radio(value="SPECT_Iodine", label="SPECT_Iodine"),
+                ft.Radio(value="SPECT_Tc", label="SPECT_Tc"),
+                ft.Radio(value="SPECT_MIBI", label="SPECT_MIBI"),
+                ft.Radio(value="Scintigraphy_Tc", label="Scintigraphy_Tc"),
+                ft.Radio(value="Scintigraphy_Iodine", label="Scintigraphy_Iodine"),
                 ft.Radio(value="Other", label="Other"),
             ]), on_change=self._handle_input_change)
         self.other_modality_field = ft.TextField(label="Other Modality", visible=False, on_change=self._handle_input_change)
@@ -494,7 +539,11 @@ class DicomAnonymizerApp:
         )
         self.custom_project_field = ft.TextField(label="Custom Project ID", visible=False, on_change=self._handle_input_change)
 
-        self.study_number_field = ft.TextField(label="Study Number", value="1", input_filter=ft.InputFilter(allow=True, regex_string=r"[1-9][0-9]*", replacement_string=""), on_change=self._handle_input_change, width=150)
+        self.study_number_field = ft.TextField(
+            label="Study Number", value="1",
+            input_filter=ft.InputFilter(allow=True, regex_string=r"[1-9][0-9]*", replacement_string=""),
+            on_change=self._handle_input_change, width=150
+        )
 
         self.generated_id_field = ft.TextField(label="Generated Patient ID", read_only=False, on_change=self.validate_inputs, tooltip="Auto-generated, but can be manually edited")
 
@@ -569,6 +618,17 @@ class DicomAnonymizerApp:
 
             self._update_patient_number_suggestion()
 
+        # Suggest next study number when patient number changes or project changes
+        if e.control == self.patient_number_field or e.control == self.project_dropdown or e.control == self.custom_project_field:
+            metadata_folder = self.metadata_folder_path.value
+            project_id = self.project_dropdown.value
+            if project_id == "Other":
+                project_id = self.custom_project_field.value.strip()
+            patient_number_str = self.patient_number_field.value.strip()
+            if os.path.isdir(metadata_folder) and project_id and patient_number_str:
+                next_study = find_next_study_number(metadata_folder, project_id, patient_number_str)
+                self.study_number_field.value = str(next_study)
+
         self.update_generated_id()
         self.validate_inputs()
         if self.page: self.page.update()
@@ -625,6 +685,15 @@ class DicomAnonymizerApp:
                     self.first_name_field.value = selected_patient["first_name"]
                     self.last_name_field.value = selected_patient["last_name"]
                     self.patient_number_field.value = selected_patient["patient_number_str"]
+                    # Suggest next study number for this patient
+                    metadata_folder = self.metadata_folder_path.value
+                    project_id = self.project_dropdown.value
+                    if project_id == "Other":
+                        project_id = self.custom_project_field.value.strip()
+                    patient_number_str = selected_patient["patient_number_str"]
+                    if os.path.isdir(metadata_folder) and project_id and patient_number_str:
+                        next_study = find_next_study_number(metadata_folder, project_id, patient_number_str)
+                        self.study_number_field.value = str(next_study)
                     self.update_generated_id()
                     self.validate_inputs()
                     if self.page: self.page.update()
@@ -632,7 +701,7 @@ class DicomAnonymizerApp:
             print(f"Error handling search result selection: {ex}")
 
     def update_generated_id(self):
-        """Constructs the Patient ID based on current selections including patient number."""
+        """Constructs the Patient ID based on current selections including patient number and study number."""
         try:
             project_id = self.project_dropdown.value
             if project_id == "Other":
@@ -663,6 +732,7 @@ class DicomAnonymizerApp:
 
             self.generated_id_field.error_text = None
 
+            # Now include both patient number and study number in the ID
             internal_suffix = f"{modality}.{study_index}||{patient_part}"
             generated_id = f"{PREFIX}^{project_id}||{internal_suffix}"
 
