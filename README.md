@@ -1,6 +1,6 @@
 # Patient Data anonimization System - Installation and Setup Guide
 
-This guide will help you set up and run the Patient Audio Recording System on Windows.
+This guide will help you set up and run the Patient anonimization System on Windows.
 
 ## Prerequisites
 
