@@ -38,9 +38,11 @@ This guide will help you set up and run the Patient anonimization System on Wind
    ```
    (Replace "YourUsername" with your actual Windows username)
    
-3. Clone the repository:
+3. Clone the repository and switch to correct branch:
    ```
    git clone https://github.com/jakubMitura14/win_app.git
+   git fetch origin anonimize
+   git checkout anonimize
    ```
    
 4. Change to the application directory:
