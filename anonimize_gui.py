@@ -389,39 +389,70 @@ def process_patient_study(metadata, status_callback=None, progress_callback=None
     Handles copying originals and anonymizing files. Saves to project-specific metadata.
     Includes progress reporting via progress_callback.
     """
+    # --- Essential Path Validation ---
     input_folder = metadata.get("input_folder")
     original_output_folder = metadata.get("original_output_folder")
     anonymized_output_folder = metadata.get("anonymized_output_folder")
     metadata_folder = metadata.get("metadata_folder")
+
+    # CRITICAL: Input folder MUST be a valid directory provided by the user.
+    if not input_folder or not os.path.isdir(input_folder):
+        if status_callback: status_callback(f"ERROR: Input path '{input_folder}' is not a valid directory. Cannot proceed.")
+        return False
+
+    # Trust that collect_metadata provided valid, existing or creatable paths for outputs/metadata
+    # Just check if they are non-empty strings.
+    if not original_output_folder:
+        if status_callback: status_callback(f"ERROR: Original output path is missing (internal error). Cannot proceed.")
+        return False
+    if not anonymized_output_folder:
+        if status_callback: status_callback(f"ERROR: Anonymized output path is missing (internal error). Cannot proceed.")
+        return False
+    if not metadata_folder:
+        if status_callback: status_callback(f"ERROR: Metadata folder path is missing (internal error). Cannot proceed.")
+        return False
+
+    # --- Optional Data Field Warnings ---
     generated_id = metadata.get("generated_id")
     project_id = metadata.get("project_id")
+    patient_number_str = metadata.get("patient_number_str")
+    first_name = metadata.get("first_name")
+    last_name = metadata.get("last_name")
+    modality = metadata.get("modality") # Added modality check
 
-    required_fields = ["input_folder", "original_output_folder", "anonymized_output_folder", "metadata_folder",
-                       "generated_id", "project_id", "patient_number_str", "first_name", "last_name"]
-    missing = [k for k in required_fields if not metadata.get(k)]
-    if missing:
-        if status_callback: status_callback(f"ERROR: Missing required metadata fields: {', '.join(missing)}")
-        return False
+    optional_fields_check = {
+        # Don't warn about generated_id here, checked separately below
+        "project_id": project_id,
+        "patient_number_str": patient_number_str,
+        "first_name": first_name,
+        "last_name": last_name,
+        "modality": modality
+    }
+    missing_optional = [k for k, v in optional_fields_check.items() if not v]
+    if missing_optional:
+        if status_callback: status_callback(f"Warning: Missing optional metadata fields: {', '.join(missing_optional)}. Processing will continue, but metadata/ID might be incomplete.")
+        print(f"Warning: Missing optional metadata: {', '.join(missing_optional)}") # Also print to console
 
-    if not os.path.isdir(input_folder):
-        if status_callback: status_callback(f"ERROR: Input path '{input_folder}' is not a valid directory.")
-        return False
-    if not os.path.isdir(metadata_folder):
-        if status_callback: status_callback(f"ERROR: Metadata folder path '{metadata_folder}' is not a valid directory.")
-        return False
+    # --- Generated ID specific check for folder creation ---
+    if not generated_id:
+         # If generated_id is missing, we can't create the specific output subfolders.
+         # Fail because it's crucial for the output structure.
+         if status_callback: status_callback(f"ERROR: Generated Patient ID is missing. Cannot create output subfolders. Please ensure Project, Modality, and Patient Number are set correctly.")
+         return False # Fail if generated_id is missing
 
     sanitized_id_foldername = sanitize_filename(generated_id)
     if not sanitized_id_foldername or sanitized_id_foldername == "_invalid_":
         if status_callback: status_callback(f"ERROR: Could not create a valid folder name from generated ID '{generated_id}'.")
         return False
 
+    # --- Proceed with Processing ---
     if status_callback: status_callback("Scanning for DICOM files...")
     dicom_files = find_dicom_files(input_folder)
     total_files = len(dicom_files)
 
     if not dicom_files:
         if status_callback: status_callback("No valid DICOM files found in the input folder.")
-        return False
+        return False # Return False if no files found
     else:
         if status_callback: status_callback(f"Found {len(dicom_files)} DICOM files. Starting processing...")
 
@@ -489,6 +520,7 @@ def process_patient_study(metadata, status_callback=None, progress_callback=None
     else:
         print(summary)
 
+    # Return True only if all files were processed successfully
     return anonymized_count == len(dicom_files) and copy_count == len(dicom_files)
 
 class DicomAnonymizerApp:
@@ -812,36 +844,35 @@ class DicomAnonymizerApp:
         if self.page: self.page.update()
 
     def validate_inputs(self, e=None):
-        """Enable start button only if all required fields and paths are valid."""
+        """Enable start button only if the input folder is valid. Other fields are optional."""
         input_ok = os.path.isdir(self.input_folder_path.value)
-        original_out_ok = os.path.isdir(self.original_output_folder_path.value)
-        anon_out_ok = os.path.isdir(self.anonymized_output_folder_path.value)
-        meta_ok = os.path.isdir(self.metadata_folder_path.value)
+        # original_out_ok = os.path.isdir(self.original_output_folder_path.value) # No longer blocks start
+        # anon_out_ok = os.path.isdir(self.anonymized_output_folder_path.value) # No longer blocks start
+        # meta_ok = os.path.isdir(self.metadata_folder_path.value) # No longer blocks start
 
-        first_name_ok = bool(self.first_name_field.value.strip())
-        last_name_ok = bool(self.last_name_field.value.strip())
-        generated_id_ok = bool(self.generated_id_field.value.strip()) and self.generated_id_field.error_text is None
+        # first_name_ok = bool(self.first_name_field.value.strip()) # No longer blocks start
+        # last_name_ok = bool(self.last_name_field.value.strip()) # No longer blocks start
+        # generated_id_ok = bool(self.generated_id_field.value.strip()) and self.generated_id_field.error_text is None # No longer blocks start
 
+        # Keep patient number format validation visual feedback, but don't block start
         patient_number_str = self.patient_number_field.value.strip()
+        # Use regex pattern r"Pat\d+" for matching "Pat" followed by digits
         patient_number_ok = bool(patient_number_str) and re.match(r"Pat\d+", patient_number_str, re.IGNORECASE) is not None
         if patient_number_str and not patient_number_ok:
             self.patient_number_field.error_text = "Use PatXXX format"
         else:
             self.patient_number_field.error_text = None
 
-        modality_selected = self.modality_radio_group.value is not None
-        other_modality_ok = not (self.modality_radio_group.value == "Other") or bool(self.other_modality_field.value.strip())
-        modality_ok = modality_selected and other_modality_ok
+        # modality_selected = self.modality_radio_group.value is not None # No longer blocks start
+        # other_modality_ok = not (self.modality_radio_group.value == "Other") or bool(self.other_modality_field.value.strip()) # No longer blocks start
+        # modality_ok = modality_selected and other_modality_ok # No longer blocks start
 
-        project_selected = self.project_dropdown.value is not None
-        other_project_ok = not (self.project_dropdown.value == "Other") or bool(self.custom_project_field.value.strip())
-        project_ok = project_selected and other_project_ok
+        # project_selected = self.project_dropdown.value is not None # No longer blocks start
+        # other_project_ok = not (self.project_dropdown.value == "Other") or bool(self.custom_project_field.value.strip()) # No longer blocks start
+        # project_ok = project_selected and other_project_ok # No longer blocks start
 
-        all_ok = (
-            input_ok and original_out_ok and anon_out_ok and meta_ok and
-            first_name_ok and last_name_ok and generated_id_ok and
-            modality_ok and project_ok and patient_number_ok
-        )
+        # Only block if input folder is not okay
+        all_ok = input_ok
 
         self.start_button.disabled = not all_ok
         if self.page: self.page.update()
