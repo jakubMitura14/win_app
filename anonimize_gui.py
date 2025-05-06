@@ -253,6 +253,7 @@ def anonymize_dicom_file(input_path, output_path, chosen_id, status_callback=Non
             "InstitutionName", "InstitutionAddress", "OperatorsName",
             "OtherPatientIDs", "OtherPatientNames", "PatientComments",
             "RequestingPhysician", "PerformingPhysicianName",
+            "SeriesDescription", "StudyDescription",  # Added DICOM Series and Study Description
             # Add any other tags you need to clear
         ]
 
@@ -293,18 +294,102 @@ def anonymize_dicom_file(input_path, output_path, chosen_id, status_callback=Non
 def process_single_file(file_path, input_folder_base, metadata, base_original_path, base_anonymized_path, status_callback=None):
     """
     Processes a single DICOM file: copies original and creates anonymized version.
+    Skips files identified as 'Dosisbericht' via tag (0009,1020).
+    Also skips files if PixelData tag (7fe0,0010) has the value b'--'.
     Returns (success_copy, success_anon, study_date).
     """
     success_copy = False
     success_anon = False
     study_date = None
-    generated_id = metadata.get("generated_id", "UNKNOWN_ID") # Get chosen ID
+    generated_id = metadata.get("generated_id", "UNKNOWN_ID")
 
     try:
-        # Calculate relative path to maintain structure
+        # Attempt to read the DICOM file for pre-checks and StudyDate
+        try:
+            # MODIFIED: Load pixel data as it's needed for a check.
+            # No stop_before_pixels=True, so pixel data is loaded if present.
+            ds = pydicom.dcmread(file_path)
+        except pydicom.errors.InvalidDicomError:
+            if status_callback: status_callback(f"  Skipping non-DICOM or invalid file: {os.path.basename(file_path)}")
+            return False, False, None # Not DICOM, so not copied, not anonymized
+        except Exception as e: # Catch other potential read errors
+            if status_callback: status_callback(f"  Error reading {os.path.basename(file_path)} for pre-check: {e}. Skipping.")
+            return False, False, None
+
+        # Check for Dosisbericht tag (0009,1020)
+        # Private tags are usually (group, element) with group being odd.
+        # (0009,1020) is an example; actual private tag structure can vary.
+        # We'll assume it's directly accessible if present.
+        tag_to_check = (0x0009, 0x1020) 
+        dosisbericht_value_str = "Dosisbericht"
+        
+        element = ds.get(tag_to_check) # Use ds.get to avoid KeyError if tag is absent
+
+        if element is not None:
+            try:
+                value_from_tag = element.value
+                decoded_value_str = None
+
+                if isinstance(value_from_tag, str):
+                    decoded_value_str = value_from_tag.strip()
+                elif isinstance(value_from_tag, bytes):
+                    # Try decoding, common DICOM encodings
+                    try:
+                        decoded_value_str = value_from_tag.decode('latin-1').strip()
+                    except UnicodeDecodeError:
+                        try:
+                            decoded_value_str = value_from_tag.decode('utf-8').strip()
+                        except UnicodeDecodeError:
+                            if status_callback:
+                                status_callback(f"  Warning: Tag {tag_to_check} in {os.path.basename(file_path)} is bytes and could not be decoded as latin-1 or utf-8.")
+                
+                if decoded_value_str == dosisbericht_value_str:
+                    if status_callback:
+                        status_callback(f"  Skipping Dosisbericht file (Tag {tag_to_check} = '{dosisbericht_value_str}'): {os.path.basename(file_path)}")
+                    return False, False, None  # Skipped: Not copied, not anonymized
+            except Exception as tag_access_error:
+                # Log error accessing tag value but proceed as if not Dosisbericht
+                if status_callback:
+                    status_callback(f"  Warning: Could not properly access or compare value of tag {tag_to_check} in {os.path.basename(file_path)}: {tag_access_error}")
+
+        # NEW Check: PixelData tag (7fe0,0010) with value b'--'
+        pixel_data_tag = (0x7fe0, 0x0010)
+        pixel_data_element = ds.get(pixel_data_tag)
+
+        if pixel_data_element is not None:
+            # Access .value only if the attribute exists.
+            # The value of PixelData is expected to be bytes.
+            if hasattr(pixel_data_element, 'value') and pixel_data_element.value == b'--':
+                if status_callback:
+                    status_callback(f"  Skipping file with placeholder PixelData (Tag {pixel_data_tag} = b'--'): {os.path.basename(file_path)}")
+                print(f"DEBUG: Skipping file '{os.path.basename(file_path)}' due to PixelData tag (7fe0,0010) having value b'--'.")
+                return False, False, None  # Skipped: Not copied, not anonymized
+            if hasattr(pixel_data_element, 'value') and pixel_data_element.value == '2d2d':
+                if status_callback:
+                    status_callback(f"  Skipping file with placeholder PixelData (Tag {pixel_data_tag} = '2d2d'): {os.path.basename(file_path)}")
+                print(f"DEBUG: Skipping file '{os.path.basename(file_path)}' due to PixelData tag (7fe0,0010) having value '2d2d'.")
+                return False, False, None  # Skipped: Not copied, not anonymized
+                # NEW Check: SeriesDescription tag contains "statistik" (case-insensitive)
+            series_description = ds.get("SeriesDescription", "")
+
+            if isinstance(series_description, str) and "statistik" in series_description.lower():
+                if status_callback:
+                    status_callback(f"  Skipping file with 'statistik' in SeriesDescription: {os.path.basename(file_path)}")
+                print(f"DEBUG: Skipping file '{os.path.basename(file_path)}' due to SeriesDescription containing 'statistik'.")
+                return False, False, None  # Skipped: Not copied, not anonymized
+            # Print pixel data value if it does not contain the null byte (\x00)
+            # pix_val = pixel_data_element.value
+            # if isinstance(pix_val, str):
+            #     if "x0" not in pix_val:
+            #         print(f"pix : {pix_val}")
+        # Extract StudyDate from the already read dataset (ds)
+
+
+        study_date = ds.get("StudyDate", None)
+        
+        # If not a Dosisbericht or placeholder PixelData, proceed with normal processing
         relative_path = os.path.relpath(file_path, input_folder_base)
 
-        # Construct full output paths
         original_output_path = os.path.join(base_original_path, relative_path)
         anonymized_output_path = os.path.join(base_anonymized_path, relative_path)
 
@@ -315,24 +400,17 @@ def process_single_file(file_path, input_folder_base, metadata, base_original_pa
         # 1. Copy the original file
         success_copy = copy_non_anonymized_dicom(file_path, original_output_path, status_callback)
 
-        # 2. Anonymize the file
+        # 2. Anonymize the file (using the original file_path as input)
         success_anon = anonymize_dicom_file(file_path, anonymized_output_path, generated_id, status_callback)
 
-        # 3. Extract StudyDate (do this once, e.g., from the original read for anonymization)
-        try:
-            ds = pydicom.dcmread(file_path, stop_before_pixels=True)
-            study_date = ds.get("StudyDate", None) # Get StudyDate if it exists
-        except Exception as date_e:
-             if status_callback: status_callback(f"  Warning: Could not read StudyDate from {os.path.basename(file_path)}: {date_e}")
-
-
-    except Exception as e:
+    except Exception as e: # Catch-all for unexpected errors during the main processing logic
         error_msg = f"ERROR processing file '{os.path.basename(file_path)}' in main loop: {e}"
         if status_callback: status_callback(error_msg)
         print(error_msg)
         traceback.print_exc()
-        success_copy = False
+        success_copy = False # Ensure flags are False on unexpected error
         success_anon = False
+        # study_date might have been set before the error, or might be None
 
     return success_copy, success_anon, study_date
 
@@ -550,6 +628,7 @@ class DicomAnonymizerApp:
                 ft.Radio(value="PETPSMA", label="PET PSMA"),
                 ft.Radio(value="PETFDG", label="FDG PET"),
                 ft.Radio(value="SPECT_Iodine", label="SPECT_Iodine"),
+                ft.Radio(value="SPECT_Lu", label="SPECT_Lu"),
                 ft.Radio(value="SPECT_Tc", label="SPECT_Tc"),
                 ft.Radio(value="SPECT_MIBI", label="SPECT_MIBI"),
                 ft.Radio(value="Scintigraphy_Tc", label="Scintigraphy_Tc"),
