@@ -271,6 +271,11 @@ def anonymize_dicom_file(input_path, output_path, chosen_id, status_callback=Non
                      ds[tag_name].value = ""
                 # Add handling for other VRs if necessary
 
+        # Remove private tag (0009, 1040)
+        private_tag = (0x0009, 0x1040)
+        if private_tag in ds:
+            del ds[private_tag]
+
         # Ensure the output directory exists
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
