@@ -395,7 +395,10 @@ def process_single_file(file_path, input_folder_base, metadata, base_original_pa
         # Extract series information for subfolder creation
         series_num = ds.get("SeriesNumber", "0")
         series_desc = ds.get("SeriesDescription", "NoDescription")
-        series_folder_name = sanitize_filename(f"{series_num}_{series_desc}")
+        series_uid = ds.get("SeriesInstanceUID", "NoUID")
+        # Use a short suffix from SeriesInstanceUID to ensure uniqueness
+        uid_suffix = series_uid[-5:] if len(series_uid) > 5 else series_uid
+        series_folder_name = sanitize_filename(f"{series_num}_{series_desc}_{uid_suffix}")
         filename = os.path.basename(file_path)
 
         original_output_path = os.path.join(base_original_path, series_folder_name, filename)

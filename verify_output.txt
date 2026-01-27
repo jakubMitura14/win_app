@@ -1,0 +1,806 @@
+Total DICOM files found: 264
+Sample File: I0000000
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000001
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000002
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000003
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000004
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000005
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000006
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000007
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000008
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000009
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000010
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000011
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000012
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000013
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000014
+Target Subfolder: 1_Localizer_6.951
+------------------------------
+Sample File: I0000262
+Target Subfolder: 21000_DCAD STL Prostate Boundary_540.1
+------------------------------
+Sample File: I0000263
+Target Subfolder: 21100_DCAD ROI_822.2
+------------------------------
+Sample File: I0000015
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000016
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000017
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000018
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000019
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000020
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000021
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000022
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000023
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000024
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000025
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000026
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000027
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000028
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000029
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000030
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000031
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000032
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000033
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000034
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000035
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000036
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000037
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000038
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000039
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000040
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000041
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000042
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000043
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000044
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000045
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000046
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000047
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000048
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000049
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000050
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000051
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000052
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000053
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000054
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000055
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000056
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000057
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000058
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000059
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000060
+Target Subfolder: 2_Ax T1 FSE  Becken_6.953
+------------------------------
+Sample File: I0000061
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000062
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000063
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000064
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000065
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000066
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000067
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000068
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000069
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000070
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000071
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000072
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000073
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000074
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000075
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000076
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000077
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000078
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000079
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000080
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000081
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000082
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000083
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000084
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000085
+Target Subfolder: 3_Sag T2 PROP DRG 3mm_6.954
+------------------------------
+Sample File: I0000086
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000087
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000088
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000089
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000090
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000091
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000092
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000093
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000094
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000095
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000096
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000097
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000098
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000099
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000100
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000101
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000102
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000103
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000104
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000105
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000106
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000107
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000108
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000109
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000110
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000111
+Target Subfolder: 4_Cor T2 PROP DRG 3mm_6.958
+------------------------------
+Sample File: I0000187
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000188
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000189
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000190
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000191
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000192
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000193
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000194
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000195
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000196
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000197
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000198
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000199
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000200
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000201
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000202
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000203
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000204
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000205
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000206
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000207
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000208
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000209
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000210
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000211
+Target Subfolder: 500_FL_B_Ax T2 PROP DRG 3mm_30440
+------------------------------
+Sample File: I0000112
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000113
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000114
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000115
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000116
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000117
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000118
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000119
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000120
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000121
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000122
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000123
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000124
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000125
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000126
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000127
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000128
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000129
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000130
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000131
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000132
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000133
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000134
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000135
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000136
+Target Subfolder: 5_Ax T2 PROP DRG 3mm_6.959
+------------------------------
+Sample File: I0000212
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000213
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000214
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000215
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000216
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000217
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000218
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000219
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000220
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000221
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000222
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000223
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000224
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000225
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000226
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000227
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000228
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000229
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000230
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000231
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000232
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000233
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000234
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000235
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000236
+Target Subfolder: 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+------------------------------
+Sample File: I0000237
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000238
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000239
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000240
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000241
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000242
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000243
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000244
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000245
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000246
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000247
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000248
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000249
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000250
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000251
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000252
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000253
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000254
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000255
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000256
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000257
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000258
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000259
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000260
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000261
+Target Subfolder: 650_ADC _10_-6 mm²_s__.13.2
+------------------------------
+Sample File: I0000137
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000138
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000139
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000140
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000141
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000142
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000143
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000144
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000145
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000146
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000147
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000148
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000149
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000150
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000151
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000152
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000153
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000154
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000155
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000156
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000157
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000158
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000159
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000160
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000161
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000162
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000163
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000164
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000165
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000166
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000167
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000168
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000169
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000170
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000171
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000172
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000173
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000174
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000175
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000176
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000177
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000178
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000179
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000180
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000181
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000182
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000183
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000184
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000185
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+Sample File: I0000186
+Target Subfolder: 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
+------------------------------
+
+Total unique series subfolders that will be created: 11
+ - 1_Localizer_6.951
+ - 21000_DCAD STL Prostate Boundary_540.1
+ - 21100_DCAD ROI_822.2
+ - 2_Ax T1 FSE  Becken_6.953
+ - 3_Sag T2 PROP DRG 3mm_6.954
+ - 4_Cor T2 PROP DRG 3mm_6.958
+ - 500_FL_B_Ax T2 PROP DRG 3mm_30440
+ - 5_Ax T2 PROP DRG 3mm_6.959
+ - 600_DW_Synthetic_ Ax FOCUS DWI b-50-800 syn b-1400_6.992
+ - 650_ADC _10_-6 mm²_s__.13.2
+ - 6_Ax FOCUS DWI b-50-800 syn b-1400_6.960
