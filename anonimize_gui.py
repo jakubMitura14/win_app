@@ -253,7 +253,8 @@ def anonymize_dicom_file(input_path, output_path, chosen_id, status_callback=Non
             "InstitutionName", "InstitutionAddress", "OperatorsName",
             "OtherPatientIDs", "OtherPatientNames", "PatientComments",
             "RequestingPhysician", "PerformingPhysicianName",
-            "SeriesDescription", "StudyDescription",  # Added DICOM Series and Study Description
+            "StudyDescription", # Added Study Description (but keeping SeriesDescription as requested)
+            "PhysiciansOfRecord", # Added PhysiciansOfRecord (0008, 1048)
             # Add any other tags you need to clear
         ]
 
@@ -677,7 +678,7 @@ class DicomAnonymizerApp:
             text="Start Processing",
             on_click=self.start_processing,
             disabled=True,
-            icon=ft.icons.PLAY_ARROW_ROUNDED
+            icon=ft.Icons.PLAY_ARROW_ROUNDED
         )
         self.progress_ring = ft.ProgressRing(visible=False, width=20, height=20, stroke_width=2)
         self.progress_bar = ft.ProgressBar(visible=False, width=400)
@@ -1107,19 +1108,19 @@ class DicomAnonymizerApp:
 
                     ft.Text("Folder Selection", size=18, weight=ft.FontWeight.BOLD),
                     ft.Row([
-                        ft.ElevatedButton("Select Input Folder...", icon=ft.icons.FOLDER_OPEN, on_click=lambda e: self.pick_folder(e, self.input_picker, "Select Input DICOM Folder")),
+                        ft.ElevatedButton("Select Input Folder...", icon=ft.Icons.FOLDER_OPEN, on_click=lambda e: self.pick_folder(e, self.input_picker, "Select Input DICOM Folder")),
                         self.input_folder_path,
                     ], alignment=ft.MainAxisAlignment.START),
                     ft.Row([
-                        ft.ElevatedButton("Select Output Folder (Originals)...", icon=ft.icons.FOLDER_COPY, on_click=lambda e: self.pick_folder(e, self.original_output_picker, "Select Output Folder for Originals")),
+                        ft.ElevatedButton("Select Output Folder (Originals)...", icon=ft.Icons.FOLDER_COPY, on_click=lambda e: self.pick_folder(e, self.original_output_picker, "Select Output Folder for Originals")),
                         self.original_output_folder_path,
                     ], alignment=ft.MainAxisAlignment.START),
                     ft.Row([
-                        ft.ElevatedButton("Select Output Folder (Anonymized)...", icon=ft.icons.FOLDER_SPECIAL, on_click=lambda e: self.pick_folder(e, self.anonymized_output_picker, "Select Output Folder for Anonymized")),
+                        ft.ElevatedButton("Select Output Folder (Anonymized)...", icon=ft.Icons.FOLDER_SPECIAL, on_click=lambda e: self.pick_folder(e, self.anonymized_output_picker, "Select Output Folder for Anonymized")),
                         self.anonymized_output_folder_path,
                     ], alignment=ft.MainAxisAlignment.START),
                     ft.Row([
-                        ft.ElevatedButton("Select Metadata Table Folder...", icon=ft.icons.TABLE_CHART, on_click=lambda e: self.pick_folder(e, self.metadata_picker, "Select Folder for Metadata CSV")),
+                        ft.ElevatedButton("Select Metadata Table Folder...", icon=ft.Icons.TABLE_CHART, on_click=lambda e: self.pick_folder(e, self.metadata_picker, "Select Folder for Metadata CSV")),
                         self.metadata_folder_path,
                     ], alignment=ft.MainAxisAlignment.START),
                     ft.Divider(),
@@ -1131,7 +1132,7 @@ class DicomAnonymizerApp:
                     ft.Text("Status Log:", weight=ft.FontWeight.BOLD),
                     ft.Container(
                         content=self.status_list,
-                        border=ft.border.all(1, ft.colors.OUTLINE),
+                        border=ft.border.all(1, ft.Colors.OUTLINE),
                         border_radius=ft.border_radius.all(5),
                         padding=10,
                         expand=True
