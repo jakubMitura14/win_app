@@ -392,11 +392,14 @@ def process_single_file(file_path, input_folder_base, metadata, base_original_pa
 
         study_date = ds.get("StudyDate", None)
         
-        # If not a Dosisbericht or placeholder PixelData, proceed with normal processing
-        relative_path = os.path.relpath(file_path, input_folder_base)
+        # Extract series information for subfolder creation
+        series_num = ds.get("SeriesNumber", "0")
+        series_desc = ds.get("SeriesDescription", "NoDescription")
+        series_folder_name = sanitize_filename(f"{series_num}_{series_desc}")
+        filename = os.path.basename(file_path)
 
-        original_output_path = os.path.join(base_original_path, relative_path)
-        anonymized_output_path = os.path.join(base_anonymized_path, relative_path)
+        original_output_path = os.path.join(base_original_path, series_folder_name, filename)
+        anonymized_output_path = os.path.join(base_anonymized_path, series_folder_name, filename)
 
         # Ensure output directories exist for the specific file
         os.makedirs(os.path.dirname(original_output_path), exist_ok=True)
