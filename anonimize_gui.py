@@ -640,6 +640,7 @@ class DicomAnonymizerApp:
                 ft.Radio(value="PETPSMA", label="PET PSMA"),
                 ft.Radio(value="PETFDG", label="FDG PET"),
                 ft.Radio(value="SPECT_Iodine", label="SPECT_Iodine"),
+                ft.Radio(value="dosimetry", label="dosimetry"),
                 ft.Radio(value="SPECT_Lu", label="SPECT_Lu"),
                 ft.Radio(value="SPECT_Tc", label="SPECT_Tc"),
                 ft.Radio(value="SPECT_MIBI", label="SPECT_MIBI"),
